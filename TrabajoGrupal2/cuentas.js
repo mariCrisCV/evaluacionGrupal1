@@ -7,7 +7,7 @@ cargar=function(){
     mostrarComponente("divCuentas");
     ocultarComponente("divMovimientos");
     ocultarComponente("divTransacciones");
-    
+    mostrarCuentas();
 }
 
 mostrarCuentas=function(){
@@ -16,6 +16,23 @@ mostrarCuentas=function(){
         Columnas: NUMERO CUENTA, NOMBRE, SALDO
         En la columna NOMBRE concatenar el nombre y el apellido
     */
+        let cmpTabla = document.getElementById("tablaCuentas");
+        let contenidoTabla = "<table><tr>" +
+            "<th>NUMERO CUENTA</th>" +
+            "<th>NOMBRE</th>" +
+            "<th>SALDO</th>" +
+            "</tr>";
+        let elementoCuenta;
+        for (let i = 0; i < cuentas.length; i++) {
+            elementoCuenta = cuentas[i];
+            contenidoTabla +=
+                "<tr><td>" + elementoCuenta.numeroCuenta + "</td>"
+                + "<td>" + elementoCuenta.nombre +" "+ elementoCuenta.apellido + "</td>"
+                + "<td>" + elementoCuenta.saldo + "</td>"
+                + "</tr>"
+        }
+        contenidoTabla += "</table>"
+        cmpTabla.innerHTML = contenidoTabla;
 }
 
 /*
