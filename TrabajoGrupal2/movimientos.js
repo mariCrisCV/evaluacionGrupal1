@@ -6,7 +6,7 @@ let movimientos=[
     {numeroCuenta:"02345211",monto:12.0,tipo:"D"},
 ]
 
-cargar=function(){
+cargarPaginaMoviemientos=function(){
     mostrarComponente("divMovimientos");
     ocultarComponente("divCuentas");
     ocultarComponente("divTransacciones");

@@ -1,11 +1,7 @@
-// Arreglo de cuentas existente
-let cuentas = [
-    { numeroCuenta: "02234567", cedula: "1714616123", nombre: "Juan", apellido: "Perez", saldo: 1000.0 },
-    { numeroCuenta: "02345211", cedula: "1281238233", nombre: "Felipe", apellido: "Caicedo", saldo: 500.0 }
-];
+
 
 // Cargar función inicial
-cargar = function() {
+cargarPaginaTRansacciones = function() {
     mostrarComponente("divTransacciones");
     ocultarComponente("divCuentas");
     ocultarComponente("divMovimientos");

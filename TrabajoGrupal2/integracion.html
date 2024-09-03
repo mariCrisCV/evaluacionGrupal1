@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="banco.css" rel="stylesheet" />
+    <script src="integracion.js"></script>
+    <script src="utilitarios.js"></script>
+    <script src="cuentas.js"></script>
+    <script src="transacciones.js"></script>
+    <script src="movimientos.js"></script>
+    <script src="cuentas.html"></script>
+    <script src="transacciones.html"></script>
+    <script src="movimientos.html"></script>
+</head>
+
+<body>
+    <div class="principal">
+        <div class="menu">
+            <div class="contenedorLogo">
+                <img src="./imagenes/logoKrakeDev.png" width="80%" />
+            </div>  
+            <div class="contenedorBotones">
+                <input type="button" value="CUENTAS" class="boton" id="btnCuentas" onclick="redirigiraCuentas();"/>
+                <input type="button" value="TRANSACCIONES" class="boton" id="btnTransacciones" onclick="redirigiraTransacciones();"/>
+                <input type="button" value="MOVIMIENTOS" class="boton" id="btnMovimientos" onclick="redirigiraMovientos()"/>
+            </div>
+            <div class="contenedorInfoGrupo">
+                <div>MARIA CRISTINA CASTANEDA</div>
+                <div>ALEX PALMA</div>
+                <div>ANTONY CHAGUAMATE</div>
+            </div>
+        </div>
+    </div>
+</html>

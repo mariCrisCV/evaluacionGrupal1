@@ -50,3 +50,9 @@ deshabilitarComponente = function(idComponente){
 habilitarComponente = function(idComponente){
     document.getElementById(idComponente).disabled = false;
 }
+
+redirigiraCuentas=function(){window.location.href="cuentas.html"}
+
+redirigiraMovientos=function(){window.location.href="movimientos.html"}
+
+redirigiraTransacciones=function(){window.location.href="transacciones.html"}
