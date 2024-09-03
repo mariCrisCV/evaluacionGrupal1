@@ -49,7 +49,7 @@ buscarCuenta = function (numeroCuenta) {
             break;
         }
     }
-    return cuentaEncontrada;
+   return cuentaEncontrada;
 }
 
 /*
@@ -59,11 +59,11 @@ buscarCuenta = function (numeroCuenta) {
 agregarCuenta = function (cuenta) {
     //Si ya existe mostrar un alert CUENTA EXISTENTE
     //Si se agrega, mostrar un alert CUENTA AGREGADA
-    let cuentaBusqueda = buscarCuenta(cuenta);
-    if (cuentaBusqueda==null){
+    let cuentaBusqueda = buscarCuenta(cuenta.numeroCuenta);
+    if (cuentaBusqueda == null) {
         cuentas.push(cuenta);
         alert("CUENTA AGREGADA");
-    }else{
+    } else {
         alert("CUENTA EXISTENTE");
     }
 }
@@ -73,4 +73,14 @@ agregar = function () {
     //Crea un objeto cuenta y agrega los atributos con los valores de las cajas respectivas
     //Invoca a agregarCuenta
     //Invoca a mostrarCuentas
+    let datoNumeroCuenta = recuperarTexto("txtNumeroCuenta");
+    let datoNombre = recuperarTexto("txtNombre");
+    let datoSaldo = recuperarTexto("txtSaldo");
+    let cuenta = {};
+    cuenta.numeroCuenta = datoNumeroCuenta;
+    cuenta.nombre = datoNombre;
+    cuenta.saldo = datoSaldo;
+    
+    agregarCuenta(cuenta);
+    mostrarCuentas();
 }
