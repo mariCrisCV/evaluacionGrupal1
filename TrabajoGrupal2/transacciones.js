@@ -61,7 +61,7 @@ ejecutarDeposito = function() {
     if (monto > 0) {
         depositar(numeroCuenta, monto);
         alert("TRANSACCIÓN EXITOSA");
-        mostrarTexto("datosCuentaSaldo", "SALDO: "+ buscarCuentaTransaccion(numeroCuenta).saldo);
+        mostrarTexto("datosCuentaSaldo", "SALDO: "+ buscarCuentaTransaccion(numeroCuenta)+numeroCuenta.saldo);
     } else {
         alert("Monto no válido.");
     }

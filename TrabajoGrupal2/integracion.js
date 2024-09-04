@@ -58,6 +58,7 @@ mostrarCuentas = function () {
     let contenidoTabla = "<table><tr>" +
         "<th>NUMERO CUENTA</th>" +
         "<th>NOMBRE</th>" +
+        "<th>APELLIDO</th>" +
         "<th>SALDO</th>" +
         "</tr>";
     let elementoCuenta;
@@ -113,10 +114,12 @@ agregar = function () {
     //Invoca a mostrarCuentas
     let datoNumeroCuenta = recuperarTexto("txtNumeroCuenta1");
     let datoNombre = recuperarTexto("txtNombre");
+    let datoApellido = recuperarTexto("txtApellido");
     let datoSaldo = recuperarTexto("txtSaldo");
     let cuenta = {};
     cuenta.numeroCuenta = datoNumeroCuenta;
     cuenta.nombre = datoNombre;
+    cuenta.apellido = datoApellido;
     cuenta.saldo = datoSaldo;
     
     agregarCuenta(cuenta);
