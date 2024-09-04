@@ -198,7 +198,7 @@ cargarPaginaTRansacciones = function() {
 }
 
 // Buscar cuenta en el arreglo
-buscarCuenta = function(numeroCuenta) {
+buscarCuentaTransaccion = function(numeroCuenta) {
     for (let cuenta of cuentas) {
         if (cuenta.numeroCuenta === numeroCuenta) {
             return cuenta;
@@ -208,14 +208,15 @@ buscarCuenta = function(numeroCuenta) {
 }
 
 // Ejecutar búsqueda de la cuenta
-ejecutarBusqueda = function() {
+ejecutarBusquedaTransaccion = function() {
     let numeroCuenta = recuperarTexto("txtNumeroCuenta");
-    let cuenta = buscarCuenta(numeroCuenta);
+    let cuenta = buscarCuentaTransaccion(numeroCuenta);
     
     if (cuenta) {
-        // Muestra los datos de la cuenta
-        mostrarTextoEnCaja("txtSaldo", cuenta.saldo);
-        mostrarTextoEnCaja("txtNombre", cuenta.nombre + " " + cuenta.apellido);
+        // // Muestra los datos de la cuenta
+        mostrarTexto("datosCuentaNumero", "NUMERO DE CUENTA: "+cuenta.numeroCuenta);
+        mostrarTexto("datosCuentaNombre", "NOMBRE: "+cuenta.nombre+" "+cuenta.apellido);
+        mostrarTexto("datosCuentaSaldo", "SALDO: "+cuenta.saldo);
         
         // Habilita los botones de depositar y retirar, y la caja de texto para el monto
         habilitarComponente("btnDepositar");
@@ -228,7 +229,7 @@ ejecutarBusqueda = function() {
 
 // Realizar depósito en la cuenta
 depositar = function(numeroCuenta, monto) {
-    let cuenta = buscarCuenta(numeroCuenta);
+    let cuenta = buscarCuentaTransaccion(numeroCuenta);
     if (cuenta) {
         cuenta.saldo += monto;
     }
@@ -242,7 +243,7 @@ ejecutarDeposito = function() {
     if (monto > 0) {
         depositar(numeroCuenta, monto);
         alert("TRANSACCIÓN EXITOSA");
-        mostrarTextoEnCaja("txtSaldo", buscarCuenta(numeroCuenta).saldo);
+        mostrarTexto("datosCuentaSaldo", "SALDO: "+ buscarCuentaTransaccion(numeroCuenta).saldo);
     } else {
         alert("Monto no válido.");
     }
@@ -250,12 +251,12 @@ ejecutarDeposito = function() {
 
 // Realizar retiro de la cuenta
 retirar = function(numeroCuenta, monto) {
-    let cuenta = buscarCuenta(numeroCuenta);
+    let cuenta = buscarCuentaTransaccion(numeroCuenta);
     if (cuenta) {
         if (cuenta.saldo >= monto) {
             cuenta.saldo -= monto;
             alert("TRANSACCIÓN EXITOSA");
-            mostrarTextoEnCaja("txtSaldo", cuenta.saldo);
+            mostrarTexto("datosCuentaSaldo", "SALDO: "+ cuenta.saldo);
         } else {
             alert("SALDO INSUFICIENTE");
         }
@@ -273,9 +274,3 @@ ejecutarRetiro = function() {
         alert("Monto no válido.");
     }
 }
-
-
-
-
-
-

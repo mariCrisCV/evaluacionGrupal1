@@ -59,25 +59,32 @@
             <div class="superior">
                 <div class="titulo">TRANSACCIONES</div>
                 <div class="contenedorTexto">
-                    <div class="etiquetaTexto">CAMPO 1</div>
+                    <div class="etiquetaTexto">NUMERO CUENTA</div>
                     <div class="cajaTexto">
-                        <input type="text" class="caja" id="campo1Transacciones"/>
+                        <input type="text" class="caja" id="txtNumeroCuenta"/>
                     </div>
                 </div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="BUSCAR" onclick="ejecutarBusqueda();"/>
+                    <input type="button" value="BUSCAR" onclick="ejecutarBusquedaTransaccion();"/>
                 </div>
                 <div class="contenedorTexto">
-                    <div class="etiquetaTexto">CAMPO 2</div>
+                    <div class="etiquetaTexto">MONTO</div>
                     <div class="cajaTexto">
-                        <input type="text" class="caja" id="campo2Transacciones"/>
+                        <input type="text" class="caja" id="txtMonto"/>
                     </div>
                 </div>
                 <div class="contenedorAcciones">
-                    <input type="button" value="DEPOSITAR" onclick="ejecutarDeposito();"/>
-                    <input type="button" value="RETIRAR" onclick="ejecutarRetiro();"/>
+                    <input type="button" value="DEPOSITAR" id="btnDepositar" onclick="ejecutarDeposito();"/>
+                    <input type="button" value="RETIRAR" id="btnRetirar" onclick="ejecutarRetiro();"/>
                     
                 </div>
+                <div class="contenedorAcciones">
+                <div class="etiquetaTexto">DATOS CUENTA>>></div>
+                <p  class="etiquetaTexto" id="datosCuentaNumero"></p>
+                <p class="etiquetaTexto" id="datosCuentaNombre"></p>
+                <p  class="etiquetaTexto" id="datosCuentaSaldo"></p>
+
+            </div>
               
             </div>
         </div>
