@@ -49,7 +49,7 @@ ejecutarBusquedaTransaccion = function() {
 depositar = function(numeroCuenta, monto) {
     let cuenta = buscarCuentaTransaccion(numeroCuenta);
     if (cuenta) {
-        cuenta.saldo += monto;
+        cuenta.saldo=0.0 += monto;
     }
 }
 
