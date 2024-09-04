@@ -2,7 +2,6 @@ cuentas=[
     {numeroCuenta:"02234567", cedula:"1714616123",nombre:"Juan",apellido:"Perez",saldo:0.0},
     {numeroCuenta:"02345211",cedula:"1281238233",nombre:"Felipe",apellido:"Caicedo",saldo:0.0}
 ]
-
 movimientos=[
     {numeroCuenta:"02234567",monto:10.24,tipo:"D"},
     {numeroCuenta:"02345211",monto:45.90,tipo:"D"},
@@ -124,7 +123,8 @@ agregar = function () {
     mostrarCuentas();
 }
 
-cargarPaginaMovimientos=function(){
+
+cargarPaginaMoviemientos=function(){
     mostrarComponente("divMovimientos");
     ocultarComponente("divCuentas");
     ocultarComponente("divTransacciones");
@@ -210,6 +210,7 @@ cargarPaginaTRansacciones = function() {
     deshabilitarComponente("btnRetirar");
     deshabilitarComponente("txtMonto");
 }
+
 
 // Buscar cuenta en el arreglo
 buscarCuentaTransaccion = function(numeroCuenta) {
@@ -298,3 +299,4 @@ ejecutarRetiro = function() {
         alert("Monto no válido.");
     }
 }
+

@@ -155,7 +155,7 @@ mostrarMovimientos=function(misMovimientos){
     //Si el tipo es C(CREDITO), mostrar el monto en positivo (tal como está guardado)
 }
 
-ejecutar=function(){
+ejecutarCuentas=function(){
     let numeroCuenta=document.getElementById("txtNumeroCuenta").value;
     filtrarMovimientos(numeroCuenta);
 
