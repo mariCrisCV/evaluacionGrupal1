@@ -18,9 +18,7 @@ movimientos=[
 
 //OCULTAR Y MOSTRAR LOS DIVS, para que cada opción muestre solo su parte
 
-
-//Cuando se realiza un depósito de forma exitosa, se debe crear un objeto movimiento
-depositar = function(numeroCuenta, monto) {
+depositoExitoso = function(numeroCuenta, monto) {
     let cuenta = buscarCuentaTransaccion(numeroCuenta);
     if (cuenta) {
         cuenta.saldo += monto;
@@ -33,6 +31,8 @@ depositar = function(numeroCuenta, monto) {
         movimientos.push(nuevoMovimiento);
     }
 }
+//Cuando se realiza un depósito de forma exitosa, se debe crear un objeto movimiento
+
 
 //con el tipo C, que corresponde a CREDITO, el número de cuenta a la que se hizo el depósito
 //y el monto que se depositó. Este objeto movimiento se agrega al arreglo movimientos
@@ -260,6 +260,7 @@ ejecutarDeposito = function() {
         alert("TRANSACCIÓN EXITOSA");
         mostrarTexto("datosCuentaSaldo", "SALDO: "+ buscarCuentaTransaccion(numeroCuenta).saldo);
         filtrarMovimientos(numeroCuenta); // Actualiza la tabla de movimientos
+        depositoExitoso(numeroCuenta, monto);
     } else {
         alert("Monto no válido.");
     }
