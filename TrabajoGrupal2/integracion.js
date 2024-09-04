@@ -21,6 +21,20 @@ movimientos=[
 
 
 //Cuando se realiza un depósito de forma exitosa, se debe crear un objeto movimiento
+depositar = function(numeroCuenta, monto) {
+    let cuenta = buscarCuentaTransaccion(numeroCuenta);
+    if (cuenta) {
+        cuenta.saldo += monto;
+        // Crear y agregar un nuevo movimiento de tipo "C" (Crédito)
+        let nuevoMovimiento = {
+            numeroCuenta: numeroCuenta,
+            monto: monto,
+            tipo: "C"
+        };
+        movimientos.push(nuevoMovimiento);
+    }
+}
+
 //con el tipo C, que corresponde a CREDITO, el número de cuenta a la que se hizo el depósito
 //y el monto que se depositó. Este objeto movimiento se agrega al arreglo movimientos
 
@@ -244,6 +258,7 @@ ejecutarDeposito = function() {
         depositar(numeroCuenta, monto);
         alert("TRANSACCIÓN EXITOSA");
         mostrarTexto("datosCuentaSaldo", "SALDO: "+ buscarCuentaTransaccion(numeroCuenta).saldo);
+        filtrarMovimientos(numeroCuenta); // Actualiza la tabla de movimientos
     } else {
         alert("Monto no válido.");
     }
@@ -255,13 +270,22 @@ retirar = function(numeroCuenta, monto) {
     if (cuenta) {
         if (cuenta.saldo >= monto) {
             cuenta.saldo -= monto;
+            // Crear y agregar un nuevo movimiento de tipo "D" (Débito)
+            let nuevoMovimiento = {
+                numeroCuenta: numeroCuenta,
+                monto: monto,
+                tipo: "D"
+            };
+            movimientos.push(nuevoMovimiento);
             alert("TRANSACCIÓN EXITOSA");
             mostrarTexto("datosCuentaSaldo", "SALDO: "+ cuenta.saldo);
+            filtrarMovimientos(numeroCuenta); // Actualiza la tabla de movimientos
         } else {
             alert("SALDO INSUFICIENTE");
         }
     }
 }
+
 
 // Ejecutar la acción de retiro
 ejecutarRetiro = function() {
