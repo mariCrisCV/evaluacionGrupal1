@@ -1,8 +1,8 @@
-cuentas=[
+let cuentas=[
     {numeroCuenta:"02234567", cedula:"1714616123",nombre:"Juan",apellido:"Perez",saldo:0.0},
     {numeroCuenta:"02345211",cedula:"1281238233",nombre:"Felipe",apellido:"Caicedo",saldo:0.0}
 ]
-movimientos=[
+let movimientos=[
     {numeroCuenta:"02234567",monto:10.24,tipo:"D"},
     {numeroCuenta:"02345211",monto:45.90,tipo:"D"},
     {numeroCuenta:"02234567",monto:65.23,tipo:"C"},
@@ -18,21 +18,8 @@ movimientos=[
 
 //OCULTAR Y MOSTRAR LOS DIVS, para que cada opción muestre solo su parte
 
-depositoExitoso = function(numeroCuenta, monto) {
-    let cuenta = buscarCuentaTransaccion(numeroCuenta);
-    if (cuenta) {
-        cuenta.saldo += monto;
-        // Crear y agregar un nuevo movimiento de tipo "C" (Crédito)
-        let nuevoMovimiento = {
-            numeroCuenta: numeroCuenta,
-            monto: monto,
-            tipo: "C"
-        };
-        movimientos.push(nuevoMovimiento);
-    }
-}
-//Cuando se realiza un depósito de forma exitosa, se debe crear un objeto movimiento
 
+//Cuando se realiza un depósito de forma exitosa, se debe crear un objeto movimiento
 
 //con el tipo C, que corresponde a CREDITO, el número de cuenta a la que se hizo el depósito
 //y el monto que se depositó. Este objeto movimiento se agrega al arreglo movimientos
@@ -40,7 +27,16 @@ depositoExitoso = function(numeroCuenta, monto) {
 //Cuando se realiza un retiro de forma exitosa, se debe crear un objeto movimiento
 //con el tipo D, que corresponde a DEBITO, el número de cuenta a la que se hizo el retiro
 //y el monto que se retiró. Este objeto movimiento se agrega al arreglo movimientos
-
+depositoExitoso = function (numeroCuenta, monto) {
+    let cuenta = buscarCuenta(numeroCuenta);
+    if (cuenta == null) {
+        return;
+    }
+    let movimiento = {numeroCuenta: numeroCuenta, monto: monto, tipo: "C"};
+    movimientos.push(movimiento);
+    cuenta.saldo = cuenta.saldo + monto;
+    mostrarCuentas();
+}
 cargarPaginaCuentas = function () {
     mostrarComponente("divCuentas");
     ocultarComponente("divMovimientos");
@@ -113,9 +109,9 @@ agregar = function () {
     //Invoca a agregarCuenta
     //Invoca a mostrarCuentas
     let datoNumeroCuenta = recuperarTexto("txtNumeroCuenta1");
-    let datoNombre = recuperarTexto("txtNombre");
     let datoApellido = recuperarTexto("txtApellido");
-    let datoSaldo = recuperarTexto("txtSaldo");
+    let datoNombre = recuperarTexto("txtNombre");
+    let datoSaldo = recuperarFloat("txtSaldo");
     let cuenta = {};
     cuenta.numeroCuenta = datoNumeroCuenta;
     cuenta.nombre = datoNombre;
@@ -214,26 +210,31 @@ cargarPaginaTRansacciones = function() {
     deshabilitarComponente("txtMonto");
 }
 
+
 // Buscar cuenta en el arreglo
-buscarCuentaTransaccion = function(numeroCuenta) {
-    for (let cuenta of cuentas) {
-        if (cuenta.numeroCuenta === numeroCuenta) {
-            return cuenta;
-        }
-    }
-    return null;
+// Buscar cuenta en el arreglo
+// Buscar cuenta en el arreglo
+// Buscar cuenta en el arreglo
+function buscarCuentaTransaccion(numeroCuenta) {
+    return cuentas.find(cuenta => cuenta.numeroCuenta === numeroCuenta) || null;
+}
+
+// Función para recuperar texto y convertirlo a float
+function recuperarFloat(id) {
+    let valor = recuperarTexto(id);
+    return parseFloat(valor) || 0.0; // Si el valor no es un número válido, devuelve 0.0
 }
 
 // Ejecutar búsqueda de la cuenta
-ejecutarBusquedaTransaccion = function() {
+function ejecutarBusquedaTransaccion() {
     let numeroCuenta = recuperarTexto("txtNumeroCuenta2");
     let cuenta = buscarCuentaTransaccion(numeroCuenta);
     
     if (cuenta) {
-        // // Muestra los datos de la cuenta
-        mostrarTexto("datosCuentaNumero", "NUMERO DE CUENTA: "+cuenta.numeroCuenta);
-        mostrarTexto("datosCuentaNombre", "NOMBRE: "+cuenta.nombre+" "+cuenta.apellido);
-        mostrarTexto("datosCuentaSaldo", "SALDO: "+cuenta.saldo);
+        // Muestra los datos de la cuenta
+        mostrarTexto("datosCuentaNumero", "NUMERO DE CUENTA: " + cuenta.numeroCuenta);
+        mostrarTexto("datosCuentaNombre", "NOMBRE: " + cuenta.nombre + " " + cuenta.apellido);
+        mostrarTexto("datosCuentaSaldo", "SALDO: " + cuenta.saldo);
         
         // Habilita los botones de depositar y retirar, y la caja de texto para el monto
         habilitarComponente("btnDepositar");
@@ -245,35 +246,40 @@ ejecutarBusquedaTransaccion = function() {
 }
 
 // Realizar depósito en la cuenta
-depositar = function(numeroCuenta, monto) {
+function depositar(numeroCuenta, monto) {
     let cuenta = buscarCuentaTransaccion(numeroCuenta);
+    let monto1=recuperarFloat("txtMonto");
     if (cuenta) {
-        cuenta.saldo=0.0 += monto;
+        cuenta.saldo += monto1;
     }
 }
 
 // Ejecutar la acción de depósito
-ejecutarDeposito = function() {
+function ejecutarDeposito() {
     let numeroCuenta = recuperarTexto("txtNumeroCuenta2");
     let monto = recuperarFloat("txtMonto");
     
     if (monto > 0) {
-        depositar(numeroCuenta, monto);
+;
         alert("TRANSACCIÓN EXITOSA");
-        mostrarTexto("datosCuentaSaldo", "SALDO: "+ buscarCuentaTransaccion(numeroCuenta).saldo);
+        depositoExitoso(numeroCuenta, monto);
+        mostrarTexto("datosCuentaSaldo", "SALDO: " + buscarCuentaTransaccion(numeroCuenta).saldo);
     } else {
         alert("Monto no válido.");
     }
 }
 
 // Realizar retiro de la cuenta
-retirar = function(numeroCuenta, monto) {
+function retirar(numeroCuenta, monto) {
     let cuenta = buscarCuentaTransaccion(numeroCuenta);
     if (cuenta) {
         if (cuenta.saldo >= monto) {
             cuenta.saldo -= monto;
             alert("TRANSACCIÓN EXITOSA");
-            mostrarTexto("datosCuentaSaldo", "SALDO: "+ cuenta.saldo);
+            mostrarTexto("datosCuentaSaldo", "SALDO: " + cuenta.saldo);
+            let movimiento = {numeroCuenta: numeroCuenta, monto: monto, tipo: "D"};
+            movimientos.push(movimiento);
+            mostrarCuentas()
         } else {
             alert("SALDO INSUFICIENTE");
         }
@@ -281,7 +287,7 @@ retirar = function(numeroCuenta, monto) {
 }
 
 // Ejecutar la acción de retiro
-ejecutarRetiro = function() {
+function ejecutarRetiro() {
     let numeroCuenta = recuperarTexto("txtNumeroCuenta2");
     let monto = recuperarFloat("txtMonto");
     
